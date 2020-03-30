@@ -1,0 +1,8 @@
+{
+  "MAF_AC_PP_CCF_fit_v3.maf_ac_pp_ccf_fit_v3_task_1.ACS_FILE": "/opt/test/REBC-AF72-TTP1-A-1-1-D-A649-36.modelFinal.seg.final.seg.pruned.seg.merged.seg.acs.seg",
+  "MAF_AC_PP_CCF_fit_v3.maf_ac_pp_ccf_fit_v3_task_1.GENDER": "female",
+  "MAF_AC_PP_CCF_fit_v3.maf_ac_pp_ccf_fit_v3_task_1.ID": "REBC-AF72",
+  "MAF_AC_PP_CCF_fit_v3.maf_ac_pp_ccf_fit_v3_task_1.MAF_FILE": "/opt/test/REBC-AF72-TTP1-A-1-1-D-A649-36_consensus_fix_NALT01.maf",
+  "MAF_AC_PP_CCF_fit_v3.maf_ac_pp_ccf_fit_v3_task_1.PLOIDY": "1.81",
+  "MAF_AC_PP_CCF_fit_v3.maf_ac_pp_ccf_fit_v3_task_1.PURITY": "0.42"
+}

@@ -12,4 +12,4 @@ RUN set -ex \
 
 COPY src /src
 WORKDIR src
-RUN chmod +x /src/fc_AllelicCapSeg_PP_CCF_fit_v3 /src/run_fc_AllelicCapSeg_PP_CCF_fit_v3.sh; sync;
+RUN chmod +x /src/fc_MAF_AC_PP_CCF_fit_v3 /src/run_fc_MAF_AC_PP_CCF_fit_v3.sh; sync;
