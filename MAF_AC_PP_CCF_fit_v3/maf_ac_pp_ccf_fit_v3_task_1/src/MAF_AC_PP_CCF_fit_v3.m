@@ -487,6 +487,9 @@ for j=1:length(X3.pccf(1,:))
     end
     XA.(vlab)=X3.pccf(:,j);
 end
+k=find(XA.SCNA_NA>-0.1);
+XA=trimStruct(XA,k);
+
 end
 
 %%
