@@ -478,7 +478,7 @@ XA.detection_power_for_single_read=NaN*XA.SCNA_NCNA; % ?
 XA.SSNV_skew=1+0*XA.SCNA_NCNA; % ?
 ccf=0:0.01:1;
 for j=1:length(X3.pccf(1,:))
-    vlab=sprintf('pccf_0Z%2.2d',round(100*ccf(j)));
+    vlab=sprintf('pccf_0Z%2.2d',round(100*ccf(j)));vlab=regexprep(vlab,'0$','');
     if (ccf(j)==0)
         vlab='pccf_0';
     end
