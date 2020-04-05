@@ -34,7 +34,7 @@ task maf_ac_pp_ccf_fit_v3_task_1 {
     output {
         File alleliccapseg_pp_ccf_fit_v3_out="${ID}.acs.ccf.tsv"
         File alleliccapseg_pp_ccf_fit_v3_collapsed_out="${ID}.acs.ccf.collapse.tsv"
-        File alleliccapseg_pp_ccf_fit_v3_ABSOLUTE_SEGTAB="${ID}.AllelicCapSeg_PP_CCF_fit_v3.ABSOLUTE_SEGTAB.tsv"
+        File alleliccapseg_pp_ccf_fit_v3_ABSOLUTE_SEGTAB="${ID}.AllelicCapSeg_PP_CCF_fit_v3.ABSOLUTE.segtab.txt"
         File maf_ac_pp_ccf_fit_v3_maf="${ID}.MAF_AC_PP_CCF_fit_v3.maf"
         File maf_ac_pp_ccf_fit_v3_ABSOLUTE_maf="${ID}.MAF_AC_PP_CCF_fit_v3.ABSOLUTE.maf"  
     }

@@ -73,7 +73,7 @@ printStruct(A2,-1,[id '.acs.ccf.collapse.tsv'])
 
 AA=AllelicCapSeg_PP_CCF_fit_v3_to_ABSOLUTE_SEGTAB(A2)
 printStruct(AA,-1,'tmp.segtab.tsv')
-cmd=[' sed ''1s/_Z_/\./g'' tmp.segtab.tsv > ' id '.AllelicCapSeg_PP_CCF_fit_v3.ABSOLUTE_SEGTAB.tsv']
+cmd=[' sed ''1s/_Z_/\./g'' tmp.segtab.tsv > ' id '.AllelicCapSeg_PP_CCF_fit_v3.ABSOLUTE.segtab.txt']
 unix(cmd)
 
 
