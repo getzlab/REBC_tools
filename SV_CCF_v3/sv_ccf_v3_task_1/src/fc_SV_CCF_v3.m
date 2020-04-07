@@ -7,7 +7,7 @@ if ischar(ST1)
     ST1=load_tsv(ST1);
 end
 
-X=SV_CCF_v3(X1,TS1,gender)
+X=SV_CCF_v3(X1,ST1,gender)
 
 
 printStruct(X,-1,[id '.SV_CCF_v3.tsv'])
