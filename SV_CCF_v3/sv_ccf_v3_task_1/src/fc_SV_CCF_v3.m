@@ -1,13 +1,13 @@
 function X=fc_SV_CCF_v3(X1,ST1,gender,id)
 
-if ischar(X)
+if ischar(X1)
     X1=load_tsv(X1);
 end
-if ischar(T)
-    T1=load_tsv(T1);
+if ischar(ST1)
+    ST1=load_tsv(ST1);
 end
 
-X=SV_CCF_v3(X1,ST1,gender)
+X=SV_CCF_v3(X1,TS1,gender)
 
 
 printStruct(X,-1,[id '.SV_CCF_v3.tsv'])
