@@ -165,7 +165,7 @@ for i=1:N
     X1.ccfMultiplicity_break2(i)=multiplicity(2);
     X1.ccfNegativeLogLikelihood_break2(i)=NLL(2);
     
-    X1.clonal=1*(X1.ccf_hat(i)>=PAR.CLONAL_CCF_THRESHOLD);
+    X1.clonal(i)=1*(X1.ccf_hat(i)>=PAR.CLONAL_CCF_THRESHOLD);
 end
 X=X1;
 end
