@@ -15,13 +15,11 @@ NB=length(CCF_BINS);
 N=length(X1.chr1);
 X1.x1=xhg19(X1.chr1,X1.pos1);
 X1.x2=xhg19(X1.chr2,X1.pos2);
-X1.VCF_VAF=2*X1.VCF_TALT./(X1.VCF_TALT+X1.VCF_TREF);
-[X1.VCF_VAF, ci]=binofit(X1.VCF_TALT*2,(2*X1.VCF_TALT+X1.VCF_TREF),0.05);
-X1.VCF_VAF_95CI_low = ci(:,1);
-X1.VCF_VAF_95CI_high = ci(:,2);
-[~, ci]=binofit(2*X1.VCF_TALT,(2*X1.VCF_TALT+X1.VCF_TREF),0.32);
-X1.VCF_VAF_CI_low = ci(:,1);
-X1.VCF_VAF_CI_high = ci(:,2);
+X1.VCF_VAF= NaN*X1.pos1;
+X1.VCF_VAF_95CI_low = NaN*X1.pos1;
+X1.VCF_VAF_95CI_high = NaN*X1.pos1;
+X1.VCF_VAF_CI_low = NaN*X1.pos1;
+X1.VCF_VAF_CI_high = NaN*X1.pos1;
 
 X1.purity=NaN*X1.pos1;
 X1.ploidy=NaN*X1.pos1;
@@ -42,14 +40,32 @@ X1.ccfCI_high=NaN*X1.pos1;
 X1.ccfMultiplicity=NaN*X1.pos1;
 X1.ccfNegativeLogLikelihood=NaN*X1.pos1;
     
-%X1.vaf_break1=NaN*X1.pos1;
 X1.ccf_hat_break1=NaN*X1.pos1;
 X1.ccfMultiplicity_break1=NaN*X1.pos1;
 X1.ccfNegativeLogLikelihood_break1=NaN*X1.pos1;
-%X1.vaf_break2=NaN*X1.pos1;
 X1.ccf_hat_break2=NaN*X1.pos1;
 X1.ccfMultiplicity_break2=NaN*X1.pos1;
 X1.ccfNegativeLogLikelihood_break2=NaN*X1.pos1;
+
+X1.ccf_hat_break1=NaN*X1.pos1;
+X1.ccfMultiplicity_break1=NaN*X1.pos1;
+X1.ccfNegativeLogLikelihood_break1=NaN*X1.pos1;
+X1.ccf_hat_break2=NaN*X1.pos1;
+X1.ccfMultiplicity_break2=NaN*X1.pos1;
+X1.ccfNegativeLogLikelihood_break2=NaN*X1.pos1;
+
+if N<1
+    X=X1;
+    return
+end
+
+X1.VCF_VAF=2*X1.VCF_TALT./(X1.VCF_TALT+X1.VCF_TREF);
+[X1.VCF_VAF, ci]=binofit(X1.VCF_TALT*2,(2*X1.VCF_TALT+X1.VCF_TREF),0.05);
+X1.VCF_VAF_95CI_low = ci(:,1);
+X1.VCF_VAF_95CI_high = ci(:,2);
+[~, ci]=binofit(2*X1.VCF_TALT,(2*X1.VCF_TALT+X1.VCF_TREF),0.32);
+X1.VCF_VAF_CI_low = ci(:,1);
+X1.VCF_VAF_CI_high = ci(:,2);
     
 ST1.x1=xhg19(ST1.Chromosome,ST1.Start_bp);
 ST1.x2=xhg19(ST1.Chromosome,ST1.End_bp);
