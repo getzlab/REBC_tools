@@ -8,6 +8,7 @@ if (nargin<4)
     PAR.CCF_PRIOR_SLOPE=0.01;
     PAR.ASSUME_NORMAL_X_WHEN_MISSING=1;
     PAR.WINDOW=10e3;
+    PAR.CLONAL_CCF_THRESHOLD=0.75;
 end
 CCF_BINS=0:PAR.DELTA:1;
 NB=length(CCF_BINS);
@@ -53,6 +54,8 @@ X1.ccfNegativeLogLikelihood_break1=NaN*X1.pos1;
 X1.ccf_hat_break2=NaN*X1.pos1;
 X1.ccfMultiplicity_break2=NaN*X1.pos1;
 X1.ccfNegativeLogLikelihood_break2=NaN*X1.pos1;
+
+X1.clonal=NaN*X1.pos1;
 
 if N<1
     X=X1;
@@ -155,15 +158,14 @@ for i=1:N
     X1.ccfMultiplicity(i)=nanmin(multiplicity);
     X1.ccfNegativeLogLikelihood(i)=nanmax(NLL);
     
-    %X1.vaf_break1(i)=AFM(1);
     X1.ccf_hat_break1(i)=ccf_hat(1);
     X1.ccfMultiplicity_break1(i)=multiplicity(1);
     X1.ccfNegativeLogLikelihood_break1(i)=NLL(1);
-    %X1.vaf_break2(i)=AFM(2);
     X1.ccf_hat_break2(i)=ccf_hat(2);
     X1.ccfMultiplicity_break2(i)=multiplicity(2);
     X1.ccfNegativeLogLikelihood_break2(i)=NLL(2);
-
+    
+    X1.clonal=1*(X1.ccf_hat(i)>=PAR.CLONAL_CCF_THRESHOLD);
 end
 X=X1;
 end
