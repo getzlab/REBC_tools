@@ -7,10 +7,15 @@ if ischar(ST1)
     ST1=load_tsv(ST1);
 end
 
-X=SV_CCF_v3(X1,ST1,gender)
+fprintf('id: %s',id)
+fprintf('purity: %.3f',ST1.purity(1))
+fprintf('#SVs: %d',length(X1.pos1))
 
 
-printStruct(X,-1,[id '.SV_CCF_v3.tsv'])
+X=SV_CCF_v3(X1,ST1,gender);
+
+
+printStruct(X,-1,[id '.SV_CCF_v3.tsv']);
 
 if isdeployed
     exit
