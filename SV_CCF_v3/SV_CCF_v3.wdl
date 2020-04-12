@@ -28,7 +28,7 @@ task sv_ccf_v3_task_1 {
     }
 
     runtime {
-        docker : "chipstewart/sv_ccf_v3_task_1:1"
+        docker : "chipstewart/sv_ccf_v3_task_1:2"
         memory: "${if defined(ram_gb) then ram_gb else '2'}GB"
         disks : "local-disk ${if defined(local_disk_gb) then local_disk_gb else '10'} HDD"
         preemptible : "${if defined(num_preemptions) then num_preemptions else '0'}"
