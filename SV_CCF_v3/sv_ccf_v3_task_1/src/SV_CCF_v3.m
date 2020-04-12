@@ -83,8 +83,12 @@ for i1=1:N
     k1b=find((X1.x1(i1)>=ST1.x1)&(X1.x1(i1)<=ST1.x2));
     k2b=find((X1.x2(i1)>=ST1.x1)&(X1.x2(i1)<=ST1.x2));
 
-    D1=PAR.WINDOW*(1-2*X1.str1(i1));
-    D2=PAR.WINDOW*(1-2*X1.str2(i1));
+    % which side of break to check aSCNAs 
+    % forward: str=0, should check left D = -1
+    % reverse: str=1, should check right D= +1
+    % wrong way 07Apr2020: D1=PAR.WINDOW*(1-2*X1.str1(i1)); D2=PAR.WINDOW*(1-2*X1.str2(i1)); 
+    D1=PAR.WINDOW*(2*X1.str1(i1)-1);
+    D2=PAR.WINDOW*(2*X1.str2(i1)-1);
  
     x1a=X1.x1(i1)+D1;
     x2a=X1.x2(i1)+D2;
