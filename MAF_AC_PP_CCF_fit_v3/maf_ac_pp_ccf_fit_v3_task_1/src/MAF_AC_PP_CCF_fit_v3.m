@@ -90,6 +90,9 @@ end
 if ~isfield(PAR,'CCF_PRIOR')
     PAR.CCF_PRIOR_SLOPE=0.01;
 end
+if ~isfield(PAR,'DO_MODELS')
+    PAR.DO_MODELS=1;
+end
 if ~isfield(PAR,'ADD_ABSOLUTE_FIELDS')
     PAR.ADD_ABSOLUTE_FIELDS=1;
 end
@@ -249,6 +252,7 @@ for i=1:N
     % skip events that ABSOLUTE skipped
     if isnan(X.dna_fraction_in_tumor(i)), continue; end
     %
+    %     if (PAR.DO_MODELS)
     % six models: mutation on A or B, on SCNA, normal, or both
     % ALT DNA per cell
     ALT_DNA=zeros(6,length(CCF_BINS));
@@ -437,14 +441,18 @@ if isnumeric(XA.Chromosome)
     XA.Chromosome(find(ismember(XA.Chromosome,'25')))='MT';
 end
 XA.male_X=ismember(upper(XA.Chromosome),'X')&(XA.SCNA_NCNB==0);
-XA.A1_Z_ix=NaN*XA.SCNA_NCNA;  % probably SCNA cluster on A
-XA.A2_Z_ix=NaN*XA.SCNA_NCNA;  % probably SCNA cluster on B
-XA.NumberOfTimesCodonChangeIsInCOSMIC=XA.COSMIC_n_overlapping_mutations.*(cellfun(@length,XA.Protein_Change)>0);
+XA.A1_ix=NaN*XA.SCNA_NCNA;  % probably SCNA cluster on A
+XA.A2_ix=NaN*XA.SCNA_NCNA;  % probably SCNA cluster on B
+if length(XA.Protein_Change)>0
+    XA.NumberOfTimesCodonChangeIsInCOSMIC=XA.COSMIC_n_overlapping_mutations.*(cellfun(@length,XA.Protein_Change)>0);
+else
+    XA.NumberOfTimesCodonChangeIsInCOSMIC=XA.Start_position;
+end
 XA.q_hat=XA.SCNA_NA+XA.SCNA_NB;
 XA.HS_q_hat_1=XA.SCNA_NA;
 XA.HS_q_hat_2=XA.SCNA_NB;
-XA.SC_Z_ix=NaN*XA.SCNA_NCNA; % subclonal SCNA?
-XA.C_Z_ix=NaN*XA.SCNA_NCNA; % clonal SCNA?
+XA.SC_ix=NaN*XA.SCNA_NCNA; % subclonal SCNA?
+XA.C_ix=NaN*XA.SCNA_NCNA; % clonal SCNA?
 XA.total_qc=NaN*XA.SCNA_NCNA; % ?
 XA.total_qs=NaN*XA.SCNA_NCNA; % ?
 XA.SC_Aq_d=NaN*XA.SCNA_NCNA; % ?
@@ -462,13 +470,13 @@ XA.Pr_GL_som_HZ_ref=NaN*XA.SCNA_NCNA; % ?
 XA.Pr_cryptic_SCNA=NaN*XA.SCNA_NCNA; % ?
 XA.modal_q_s=XA.multiplicity; % ?
 XA.LL=NaN*XA.SCNA_NCNA; % ?
-XA.subclonal_Z_ix=XA.ccf_hat<0.9;
+XA.subclonal_ix=XA.ccf_hat<0.9;
 XA.Pr_subclonal_wt0=NaN*XA.SCNA_NCNA; % ?
-XA.clonal_Z_ix=XA.ccf_hat>=0.9;
-XA.wt0_Z_ix=NaN*XA.SCNA_NCNA; % ?
-XA.clonal_het_Z_ix=1+0*XA.Start_position;
-XA.ge2_Z_ix=NaN*XA.SCNA_NCNA; % ?
-XA.homozygous_Z_ix=0*XA.Start_position;
+XA.clonal_ix=XA.ccf_hat>=0.9;
+XA.wt0_ix=NaN*XA.SCNA_NCNA; % ?
+XA.clonal_het_ix=1+0*XA.Start_position;
+XA.ge2_ix=NaN*XA.SCNA_NCNA; % ?
+XA.homozygous_ix=0*XA.Start_position;
 XA.H1=NaN*XA.SCNA_NCNA; % ?
 XA.H2=NaN*XA.SCNA_NCNA; % ?
 XA.H3=NaN*XA.SCNA_NCNA; % ?
@@ -476,9 +484,11 @@ XA.H4=NaN*XA.SCNA_NCNA; % ?
 XA.detection_power=NaN*XA.SCNA_NCNA; % ?
 XA.detection_power_for_single_read=NaN*XA.SCNA_NCNA; % ?
 XA.SSNV_skew=1+0*XA.SCNA_NCNA; % ?
-ccf=0:0.01:1;
-for j=1:length(X3.pccf(1,:))
-    vlab=sprintf('pccf_0Z%2.2d',round(100*ccf(j)));vlab=regexprep(vlab,'0$','');
+[N,nb]=size(X3.pccf)
+db=1/(nb-1);
+ccf=0:db:1;
+for j=1:nb
+    vlab=sprintf('pccf_0z%d',round(100*ccf(j)));
     if (ccf(j)==0)
         vlab='pccf_0';
     end
@@ -487,9 +497,6 @@ for j=1:length(X3.pccf(1,:))
     end
     XA.(vlab)=X3.pccf(:,j);
 end
-k=find(XA.SCNA_NA>-0.1);
-XA=trimStruct(XA,k);
-
 end
 
 %%
@@ -766,4 +773,3 @@ for i=1:length(flist)
 end
 unix('ls -lath')
 end
-
