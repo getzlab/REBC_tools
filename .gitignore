@@ -5,4 +5,7 @@ cromwell-executions/**
 latest/**
 cromwell-workflow-logs/**
 *.m~
+<<<<<<< HEAD
 
+=======
+>>>>>>> e2c60b8c209754e1046d36f13fd07e78a8403347
