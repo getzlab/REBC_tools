@@ -4,3 +4,4 @@
 cromwell-executions/**
 latest/**
 cromwell-workflow-logs/**
+*.m~
