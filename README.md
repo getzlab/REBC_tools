@@ -48,5 +48,12 @@ Terra tasks: Each with matlab src directory, Dockerfile, and workflow definition
     * File SV_BP_CCF_v3_tsv:  BP tsv includes fields with SV CCF estimates 
 
 
+Matlab scripts for post-processing outside of Terra: Most of these are matlab utility functions used by a main analysis script. 
+---
 
+* alleleFraction_clonal_hets_Purity_estimate.m: makes purity estimate based on finding somatic clonal het peak. 
+* REBC_balanced_inv2_clusters_unfiltered_21Feb2021.m: clusters SV breakpoints into balanced, inversion, and complex chains of SVs. 
+* REBC_SV_hotspots_21Feb2021.m:  Mark or remove SV events with exactly recurrent breakpoints - likely to be mapping artifacts. 
+* revise_GISTIC_sample_tables.m: Correct GISTIC2 output tables marking samples for arm-level and focal SCNAs. 
+* REBC_supplemental_figures_mutations.m: matlab script that generated supplmental figures 7 and 14. 
     
