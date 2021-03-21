@@ -52,8 +52,11 @@ Matlab scripts for post-processing outside of Terra: Most of these are matlab ut
 ---
 
 * alleleFraction_clonal_hets_Purity_estimate.m: makes purity estimate based on finding somatic clonal het peak. 
-* REBC_balanced_inv2_clusters_unfiltered_21Feb2021.m: clusters SV breakpoints into balanced, inversion, and complex chains of SVs. 
-* REBC_SV_hotspots_21Feb2021.m:  Mark or remove SV events with exactly recurrent breakpoints - likely to be mapping artifacts. 
+* REBC_SV_hotspots_4May2020.m:  Mark or remove SV events with exactly recurrent breakpoints - likely to be mapping artifacts. 
+* REBC_balanced_inv2_clusters_unfiltered_27Jun2020.m: clusters SV breakpoints into balanced, inversion, and complex chains of SVs. 
 * revise_GISTIC_sample_tables.m: Correct GISTIC2 output tables marking samples for arm-level and focal SCNAs. 
 * REBC_supplemental_figures_mutations.m: matlab script that generated supplmental figures 7 and 14. 
     
+Python script to filter SV calls following REBC_SV_hotspots_4May2020 and before REBC_balanced_inv2_clusters_unfiltered_27Jun2020
+---
+*  dedup_svs_v3.sh, which calls dedup_svs_v3.py
